@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useSearchParams, Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
 import { 
   Mail, 
   Lock, 
@@ -70,7 +70,7 @@ const AuthPage = () => {
       <div className="auth-mesh-bg" />
 
       <div className="auth-content-box">
-        <motion.div 
+        <Motion.div 
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           className="auth-sidebar-info"
@@ -109,9 +109,9 @@ const AuthPage = () => {
           <div className="auth-footer-text">
             © 2024 CloudTask Inc. Trusted by 2M+ teams globally.
           </div>
-        </motion.div>
+        </Motion.div>
 
-        <motion.div 
+        <Motion.div 
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           className="auth-form-card mask-card"
@@ -124,7 +124,7 @@ const AuthPage = () => {
           <form onSubmit={handleSubmit} className="auth-form-premium">
             <AnimatePresence mode="wait">
               {!isLogin && (
-                <motion.div 
+                <Motion.div 
                   key="name-field"
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
@@ -143,7 +143,7 @@ const AuthPage = () => {
                       onChange={handleChange}
                     />
                   </div>
-                </motion.div>
+                </Motion.div>
               )}
             </AnimatePresence>
 
@@ -209,7 +209,7 @@ const AuthPage = () => {
               </button>
             </p>
           </form>
-        </motion.div>
+        </Motion.div>
       </div>
 
       <style dangerouslySetInnerHTML={{ __html: `

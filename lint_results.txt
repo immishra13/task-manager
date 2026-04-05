@@ -1,0 +1,22 @@
+
+> task-manager@0.0.0 lint
+> eslint .
+
+
+E:\CC mp\task-manager\src\components\TaskCard.jsx
+  2:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+E:\CC mp\task-manager\src\components\TaskModal.jsx
+  2:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+E:\CC mp\task-manager\src\hooks\useTasks.js
+  39:6  warning  React Hook useEffect has an unnecessary dependency: 'auth.currentUser'. Either exclude it or remove the dependency array. Outer scope values like 'auth.currentUser' aren't valid dependencies because mutating them doesn't re-render the component  react-hooks/exhaustive-deps
+
+E:\CC mp\task-manager\src\pages\AuthPage.jsx
+  3:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+E:\CC mp\task-manager\src\pages\LandingPage.jsx
+  3:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+Γ£û 5 problems (4 errors, 1 warning)
+

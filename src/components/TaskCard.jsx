@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { Clock, Trash2, CheckCircle2, Circle, MoreHorizontal } from 'lucide-react';
 
 const TaskCard = ({ task, onDelete, onToggle }) => {
@@ -14,7 +14,7 @@ const TaskCard = ({ task, onDelete, onToggle }) => {
   const style = priorityStyles[task.priority] || priorityStyles.medium;
 
   return (
-    <motion.div 
+    <Motion.div 
       layout
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
@@ -141,7 +141,7 @@ const TaskCard = ({ task, onDelete, onToggle }) => {
         
         .delete-btn:hover { background: #fef2f2; color: #ef4444; border-color: #fee2e2; }
       `}} />
-    </motion.div>
+    </Motion.div>
   );
 };
 

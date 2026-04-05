@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
 import { X, Calendar, Tag, AlignLeft, Sparkles, Plus } from 'lucide-react';
 
 const TaskModal = ({ onClose, onSubmit }) => {
@@ -22,7 +22,7 @@ const TaskModal = ({ onClose, onSubmit }) => {
 
   return (
     <div className="modal-overlay">
-      <motion.div 
+      <Motion.div 
         initial={{ opacity: 0, scale: 0.95, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         className="modal-content-premium"
@@ -98,7 +98,7 @@ const TaskModal = ({ onClose, onSubmit }) => {
             </button>
           </div>
         </form>
-      </motion.div>
+      </Motion.div>
 
       <style dangerouslySetInnerHTML={{ __html: `
         .modal-overlay {

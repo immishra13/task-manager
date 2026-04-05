@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { CheckCircle, Zap, ArrowRight, Code, Star, Layout, Users, Sparkles } from 'lucide-react';
 
 const LandingPage = () => {
@@ -30,7 +30,7 @@ const LandingPage = () => {
 
       <header className="hero-section">
         <div className="container">
-          <motion.div 
+          <Motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -50,9 +50,9 @@ const LandingPage = () => {
                 <Code size={20} /> View on GitHub
               </Link>
             </div>
-          </motion.div>
+          </Motion.div>
           
-          <motion.div 
+          <Motion.div 
             initial={{ opacity: 0, scale: 0.95, y: 40 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
@@ -88,7 +88,7 @@ const LandingPage = () => {
               </div>
               <div className="glow-effect" />
             </div>
-          </motion.div>
+          </Motion.div>
         </div>
       </header>
 
