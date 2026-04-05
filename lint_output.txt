@@ -1,0 +1,22 @@
+
+> task-manager@0.0.0 lint
+> eslint .
+
+
+E:\CC mp\task-manager\src\components\TaskBoard.jsx
+  8:36  error  'updateTask' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+E:\CC mp\task-manager\src\components\TaskCard.jsx
+  2:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+E:\CC mp\task-manager\src\components\TaskModal.jsx
+  2:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+E:\CC mp\task-manager\src\pages\AuthPage.jsx
+  3:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+E:\CC mp\task-manager\src\pages\LandingPage.jsx
+  3:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+Γ£û 5 problems (5 errors, 0 warnings)
+
