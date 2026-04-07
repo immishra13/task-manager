@@ -13,9 +13,14 @@ import {
   ShieldCheck,
   Zap 
 } from 'lucide-react';
-import { auth, db } from '../firebase/config';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { setDoc, doc } from 'firebase/firestore';
+import { auth, db, googleProvider, githubProvider } from '../firebase/config';
+import { 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword, 
+  updateProfile,
+  signInWithPopup 
+} from 'firebase/auth';
+import { setDoc, doc, getDoc } from 'firebase/firestore';
 
 const AuthPage = () => {
   const [searchParams] = useSearchParams();
@@ -55,11 +60,55 @@ const AuthPage = () => {
           displayName: formData.displayName,
           email: formData.email,
           createdAt: new Date().toISOString(),
+          lastLogin: new Date().toISOString(),
         });
       }
       navigate('/dashboard');
     } catch (err) {
       setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSocialLogin = async (provider) => {
+    setLoading(true);
+    setError('');
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      // Check if user exists in Firestore
+      const userRef = doc(db, "users", user.uid);
+      const userSnap = await getDoc(userRef);
+
+      if (!userSnap.exists()) {
+        // Create user doc if it doesn't exist
+        await setDoc(userRef, {
+          uid: user.uid,
+          displayName: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+          createdAt: new Date().toISOString(),
+          lastLogin: new Date().toISOString(),
+          provider: provider.providerId
+        });
+      } else {
+        // Update last login
+        await setDoc(userRef, { lastLogin: new Date().toISOString() }, { merge: true });
+      }
+
+      navigate('/dashboard');
+    } catch (err) {
+      console.error("Social Login Error:", err);
+      // Detailed error messages for common social auth issues
+      if (err.code === 'auth/account-exists-with-different-credential') {
+        setError('An account already exists with the same email address but different sign-in credentials.');
+      } else if (err.code === 'auth/popup-closed-by-user') {
+        setError('Login cancelled. Please try again.');
+      } else {
+        setError(err.message);
+      }
     } finally {
       setLoading(false);
     }
@@ -192,11 +241,21 @@ const AuthPage = () => {
             </div>
 
             <div className="social-auth-row">
-              <button type="button" className="social-btn">
+              <button 
+                type="button" 
+                className="social-btn" 
+                onClick={() => handleSocialLogin(githubProvider)}
+                disabled={loading}
+              >
                 <Code size={18} />
                 <span>GitHub</span>
               </button>
-              <button type="button" className="social-btn">
+              <button 
+                type="button" 
+                className="social-btn" 
+                onClick={() => handleSocialLogin(googleProvider)}
+                disabled={loading}
+              >
                 <Globe size={18} />
                 <span>Google</span>
               </button>
